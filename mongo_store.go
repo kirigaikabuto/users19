@@ -14,7 +14,7 @@ type usersStore struct {
 }
 
 func NewUsersStore(config MongoConfig) (UsersStore, error) {
-	clientOptions := options.Client().ApplyURI(config.Host)
+	clientOptions := options.Client().ApplyURI("mongodb://" + config.Host + ":" + config.Port)
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		return nil, err
